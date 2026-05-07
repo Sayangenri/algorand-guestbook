@@ -4,6 +4,7 @@ import { GuestbookAppContractClient, Message } from '../contracts/GuestbookAppCo
 import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
 import { ellipseAddress } from '../utils/ellipseAddress'
+import algosdk from 'algosdk'
 
 interface GuestbookEntry {
   index: number
@@ -39,7 +40,7 @@ const GuestbookMessages = ({ refreshTrigger }: GuestbookMessagesProps) => {
 
       const client = new GuestbookAppContractClient({
         appId: APP_ID,
-        defaultSender: activeAddress ?? undefined,
+        defaultSender: activeAddress || algosdk.getApplicationAddress(APP_ID).toString(),
         algorand,
       })
 
@@ -79,35 +80,36 @@ const GuestbookMessages = ({ refreshTrigger }: GuestbookMessagesProps) => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center p-8">
-        <span className="loading loading-spinner loading-lg"></span>
+      <div className="loader-container">
+        <div className="spinner spinner-lg"></div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="alert alert-error">
-        <span>Error loading messages: {error}</span>
+      <div className="glass-panel" style={{ borderColor: 'rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.1)' }}>
+        <p style={{ color: '#f87171' }}>Error loading messages: {error}</p>
       </div>
     )
   }
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-2xl font-bold">Guestbook Entries ({messages.length})</h2>
+    <div>
+      <h2 className="text-title gradient-text">Guestbook Entries ({messages.length})</h2>
       {messages.length === 0 ? (
-        <p className="text-gray-500">No messages yet. Be the first to sign the guestbook!</p>
+        <div className="empty-state">
+          <div className="empty-state-icon">✍️</div>
+          <p className="text-subtitle">No messages yet. Be the first to sign the guestbook!</p>
+        </div>
       ) : (
-        <div className="space-y-3">
+        <div>
           {messages.map((msg) => (
-            <div key={msg.index} className="card bg-base-100 shadow-md">
-              <div className="card-body p-4">
-                <p className="whitespace-pre-wrap">{msg.text}</p>
-                <div className="flex justify-between text-sm text-gray-500 mt-2">
-                  <span className="font-mono">{ellipseAddress(msg.sender)}</span>
-                  <span>{formatDate(msg.timestamp)}</span>
-                </div>
+            <div key={msg.index} className="glass-panel message-card">
+              <p className="message-text">{msg.text}</p>
+              <div className="message-footer">
+                <span className="message-sender">{ellipseAddress(msg.sender)}</span>
+                <span>{formatDate(msg.timestamp)}</span>
               </div>
             </div>
           ))}

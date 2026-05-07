@@ -53,27 +53,42 @@ const AppCalls = ({ openModal, setModalState, onSubmitSuccess }: AppCallsInterfa
   }
 
   return (
-    <dialog id="submit_message_modal" className={`modal ${openModal ? 'modal-open' : ''} bg-slate-200`}>
-      <form method="dialog" className="modal-box">
-        <h3 className="font-bold text-lg">Sign the Guestbook</h3>
-        <p className="py-4">Write your message to the on-chain guestbook</p>
+    <div className={`modal-overlay ${openModal ? 'is-open' : ''}`}>
+      <div className="glass-modal">
+        <div className="modal-header">
+          <h3 className="modal-title gradient-text">Sign the Guestbook</h3>
+          <p className="text-subtitle">Write your message to the on-chain guestbook</p>
+        </div>
+        
         <textarea
-          className="textarea textarea-bordered w-full"
+          className="input-premium mb-4"
           placeholder="Your message..."
           value={messageText}
           onChange={(e) => setMessageText(e.target.value)}
           rows={4}
         />
-        <div className="modal-action">
-          <button className="btn" onClick={() => setModalState(false)}>
-            Close
+        
+        <div className="modal-actions">
+          <button className="btn-outline" onClick={(e) => { e.preventDefault(); setModalState(false); }}>
+            Cancel
           </button>
-          <button className={`btn btn-primary ${loading ? 'loading' : ''}`} onClick={submitMessage} disabled={loading || !messageText.trim()}>
-            {loading ? <span className="loading loading-spinner" /> : 'Submit Message'}
+          <button 
+            className="btn-premium" 
+            onClick={(e) => { e.preventDefault(); submitMessage(); }} 
+            disabled={loading || !messageText.trim()}
+          >
+            {loading ? (
+              <span className="spinner"></span>
+            ) : (
+              <>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+                Submit Message
+              </>
+            )}
           </button>
         </div>
-      </form>
-    </dialog>
+      </div>
+    </div>
   )
 }
 

@@ -46,34 +46,38 @@ const Transact = ({ openModal, setModalState }: TransactInterface) => {
   }
 
   return (
-    <dialog id="transact_modal" className={`modal ${openModal ? 'modal-open' : ''} bg-slate-200`}style={{ display: openModal ? 'block' : 'none' }}>
-      <form method="dialog" className="modal-box">
-        <h3 className="font-bold text-lg">Send payment transaction</h3>
-        <br />
+    <div className={`modal-overlay ${openModal ? 'is-open' : ''}`}>
+      <div className="glass-modal">
+        <div className="modal-header">
+          <h3 className="modal-title gradient-text">Send payment transaction</h3>
+        </div>
+        
         <input
           type="text"
           data-test-id="receiver-address"
           placeholder="Provide wallet address"
-          className="input input-bordered w-full"
+          className="input-premium mb-4 mt-4"
           value={receiverAddress}
           onChange={(e) => {
             setReceiverAddress(e.target.value)
           }}
         />
-        <div className="modal-action grid">
-          <button className="btn" onClick={() => setModalState(!openModal)}>
+        
+        <div className="modal-actions">
+          <button className="btn-outline" onClick={(e) => { e.preventDefault(); setModalState(!openModal); }}>
             Close
           </button>
           <button
             data-test-id="send-algo"
-            className={`btn ${receiverAddress.length === 58 ? '' : 'btn-disabled'} lo`}
-            onClick={handleSubmitAlgo}
+            className="btn-premium"
+            onClick={(e) => { e.preventDefault(); handleSubmitAlgo(); }}
+            disabled={receiverAddress.length !== 58 || loading}
           >
-            {loading ? <span className="loading loading-spinner" /> : 'Send 1 Algo'}
+            {loading ? <span className="spinner" /> : 'Send 1 Algo'}
           </button>
         </div>
-      </form>
-    </dialog>
+      </div>
+    </div>
   )
 }
 

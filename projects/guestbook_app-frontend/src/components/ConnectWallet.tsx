@@ -32,9 +32,17 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
                 data-test-id={`${wallet.id}-connect`}
                 className="btn-wallet-option"
                 key={`provider-${wallet.id}`}
-                onClick={(e) => {
+                onClick={async (e) => {
                   e.preventDefault()
-                  return wallet.connect()
+                  try {
+                    await wallet.connect()
+                    if (wallet.setActive) {
+                      wallet.setActive()
+                    }
+                    closeModal()
+                  } catch (err) {
+                    console.error('Wallet connection failed:', err)
+                  }
                 }}
               >
                 {!isKmd(wallet) && (

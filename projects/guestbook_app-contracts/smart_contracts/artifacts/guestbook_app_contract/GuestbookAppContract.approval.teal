@@ -1,0 +1,156 @@
+#pragma version 11
+#pragma typetrack false
+
+// algopy.arc4.ARC4Contract.approval_program() -> uint64:
+main:
+    intcblock 1 0
+    bytecblock "message_count" "msg_" 0x151f7c75
+    txn ApplicationID
+    bnz main_after_if_else@2
+    // smart_contracts/guestbook_app_contract/contract.py:12
+    // self.message_count = GlobalState(UInt64(0))
+    bytec_0 // "message_count"
+    intc_1 // 0
+    app_global_put
+
+main_after_if_else@2:
+    // smart_contracts/guestbook_app_contract/contract.py:10
+    // class GuestbookAppContract(ARC4Contract):
+    txn OnCompletion
+    !
+    assert
+    txn ApplicationID
+    bz main_create_NoOp@9
+    pushbytess 0xb296dc7c 0xa684ef23 0xa2e52604 // method "submit_message(string)void", method "get_message_count()uint64", method "get_message(uint64)(address,string,uint64)"
+    txna ApplicationArgs 0
+    match submit_message get_message_count get_message
+    err
+
+main_create_NoOp@9:
+    // smart_contracts/guestbook_app_contract/contract.py:10
+    // class GuestbookAppContract(ARC4Contract):
+    pushbytes 0x4c5c61ba // method "create()void"
+    txna ApplicationArgs 0
+    match main_create_route@10
+    err
+
+main_create_route@10:
+    // smart_contracts/guestbook_app_contract/contract.py:15
+    // @arc4.abimethod(create="require")
+    intc_0 // 1
+    return
+
+
+// smart_contracts.guestbook_app_contract.contract.GuestbookAppContract.submit_message[routing]() -> void:
+submit_message:
+    // smart_contracts/guestbook_app_contract/contract.py:19
+    // @arc4.abimethod
+    txna ApplicationArgs 1
+    dup
+    intc_1 // 0
+    extract_uint16 // on error: invalid array length header
+    pushint 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    // smart_contracts/guestbook_app_contract/contract.py:21
+    // count = self.message_count.value
+    intc_1 // 0
+    bytec_0 // "message_count"
+    app_global_get_ex
+    assert // check self.message_count exists
+    // smart_contracts/guestbook_app_contract/contract.py:22
+    // count += 1
+    intc_0 // 1
+    +
+    // smart_contracts/guestbook_app_contract/contract.py:23
+    // self.message_count.value = count
+    bytec_0 // "message_count"
+    dig 1
+    app_global_put
+    // smart_contracts/guestbook_app_contract/contract.py:26
+    // sender=arc4.Address(Txn.sender),
+    txn Sender
+    // smart_contracts/guestbook_app_contract/contract.py:28
+    // timestamp=arc4.UInt64(Global.latest_timestamp),
+    global LatestTimestamp
+    itob
+    // smart_contracts/guestbook_app_contract/contract.py:25-29
+    // msg = Message(
+    //     sender=arc4.Address(Txn.sender),
+    //     text=text,
+    //     timestamp=arc4.UInt64(Global.latest_timestamp),
+    // )
+    swap
+    pushbytes 0x002a
+    concat
+    swap
+    concat
+    uncover 2
+    concat
+    // smart_contracts/guestbook_app_contract/contract.py:30
+    // self.messages[count] = msg.copy()
+    swap
+    itob
+    bytec_1 // "msg_"
+    swap
+    concat
+    dup
+    box_del
+    pop
+    swap
+    box_put
+    // smart_contracts/guestbook_app_contract/contract.py:19
+    // @arc4.abimethod
+    intc_0 // 1
+    return
+
+
+// smart_contracts.guestbook_app_contract.contract.GuestbookAppContract.get_message_count[routing]() -> void:
+get_message_count:
+    // smart_contracts/guestbook_app_contract/contract.py:34
+    // return arc4.UInt64(self.message_count.value)
+    intc_1 // 0
+    bytec_0 // "message_count"
+    app_global_get_ex
+    assert // check self.message_count exists
+    itob
+    // smart_contracts/guestbook_app_contract/contract.py:32
+    // @arc4.abimethod(readonly=True)
+    bytec_2 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+
+// smart_contracts.guestbook_app_contract.contract.GuestbookAppContract.get_message[routing]() -> void:
+get_message:
+    // smart_contracts/guestbook_app_contract/contract.py:36
+    // @arc4.abimethod(readonly=True)
+    txna ApplicationArgs 1
+    dup
+    len
+    pushint 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    // smart_contracts/guestbook_app_contract/contract.py:38
+    // return self.messages[index.native]
+    btoi
+    itob
+    bytec_1 // "msg_"
+    swap
+    concat
+    box_get
+    assert // check self.messages entry exists
+    // smart_contracts/guestbook_app_contract/contract.py:36
+    // @arc4.abimethod(readonly=True)
+    bytec_2 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return

@@ -1,0 +1,873 @@
+{
+  "version": 3,
+  "sources": [
+    "../../guestbook_app_contract/contract.py"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAWQ;AAAiC;AAAjC;AAFR;;AAAA;AAAA;AAAA;;AAAA;;;AAAA;;;;;;;;;;;;;;;;;AAAA;;;AAAA;;;;;;;;AAAA;AAAA;;;;;;AAAA;;;AAAA;;;;AAAA;AAKK;AAAA;AAIA;;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAEW;AAAA;AAAA;AAAA;AACC;AAAT;AACA;AAAA;;AAAA;AAGwB;;AAEE;;AAAZ;AAHR;AAAA;;;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAKQ;AAAA;AAAd;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAXH;AAAA;AAesB;AAAA;AAAA;AAAA;AAAZ;AAFV;AAAA;AAAA;AAAA;AAAA;AAAA;AAIA;;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAEwB;AAAA;AAAd;AAAA;AAAA;AAAA;AAAA;AAFV;AAAA;AAAA;AAAA;AAAA;AAAA",
+  "op_pc_offset": 0,
+  "pc_events": {
+    "1": {
+      "subroutine": "algopy.arc4.ARC4Contract.approval_program",
+      "params": {},
+      "block": "main",
+      "stack_in": [],
+      "op": "intcblock 1 0"
+    },
+    "5": {
+      "op": "bytecblock \"message_count\" \"msg_\" 0x151f7c75"
+    },
+    "31": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "33": {
+      "op": "bnz main_after_if_else@2",
+      "stack_out": []
+    },
+    "36": {
+      "op": "bytec_0 // \"message_count\"",
+      "defined_out": [
+        "\"message_count\""
+      ],
+      "stack_out": [
+        "\"message_count\""
+      ]
+    },
+    "37": {
+      "op": "intc_1 // 0",
+      "defined_out": [
+        "\"message_count\"",
+        "0"
+      ],
+      "stack_out": [
+        "\"message_count\"",
+        "0"
+      ]
+    },
+    "38": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "39": {
+      "block": "main_after_if_else@2",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "tmp%0#1"
+      ]
+    },
+    "41": {
+      "op": "!",
+      "defined_out": [
+        "tmp%1#1"
+      ],
+      "stack_out": [
+        "tmp%1#1"
+      ]
+    },
+    "42": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "43": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "tmp%2#0"
+      ]
+    },
+    "45": {
+      "op": "bz main_create_NoOp@9",
+      "stack_out": []
+    },
+    "48": {
+      "op": "pushbytess 0xb296dc7c 0xa684ef23 0xa2e52604 // method \"submit_message(string)void\", method \"get_message_count()uint64\", method \"get_message(uint64)(address,string,uint64)\"",
+      "defined_out": [
+        "Method(get_message(uint64)(address,string,uint64))",
+        "Method(get_message_count()uint64)",
+        "Method(submit_message(string)void)"
+      ],
+      "stack_out": [
+        "Method(submit_message(string)void)",
+        "Method(get_message_count()uint64)",
+        "Method(get_message(uint64)(address,string,uint64))"
+      ]
+    },
+    "65": {
+      "op": "txna ApplicationArgs 0",
+      "defined_out": [
+        "Method(get_message(uint64)(address,string,uint64))",
+        "Method(get_message_count()uint64)",
+        "Method(submit_message(string)void)",
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "Method(submit_message(string)void)",
+        "Method(get_message_count()uint64)",
+        "Method(get_message(uint64)(address,string,uint64))",
+        "tmp%4#0"
+      ]
+    },
+    "68": {
+      "op": "match submit_message get_message_count get_message",
+      "stack_out": []
+    },
+    "76": {
+      "op": "err"
+    },
+    "77": {
+      "block": "main_create_NoOp@9",
+      "stack_in": [],
+      "op": "pushbytes 0x4c5c61ba // method \"create()void\"",
+      "defined_out": [
+        "Method(create()void)"
+      ],
+      "stack_out": [
+        "Method(create()void)"
+      ]
+    },
+    "83": {
+      "op": "txna ApplicationArgs 0",
+      "defined_out": [
+        "Method(create()void)",
+        "tmp%5#0"
+      ],
+      "stack_out": [
+        "Method(create()void)",
+        "tmp%5#0"
+      ]
+    },
+    "86": {
+      "op": "match main_create_route@10",
+      "stack_out": []
+    },
+    "90": {
+      "op": "err"
+    },
+    "91": {
+      "block": "main_create_route@10",
+      "stack_in": [],
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "92": {
+      "op": "return",
+      "stack_out": []
+    },
+    "93": {
+      "subroutine": "smart_contracts.guestbook_app_contract.contract.GuestbookAppContract.submit_message[routing]",
+      "params": {},
+      "block": "submit_message",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0"
+      ]
+    },
+    "96": {
+      "op": "dup",
+      "defined_out": [
+        "text#0",
+        "text#0 (copy)"
+      ],
+      "stack_out": [
+        "text#0",
+        "text#0 (copy)"
+      ]
+    },
+    "97": {
+      "op": "intc_1 // 0",
+      "defined_out": [
+        "0",
+        "text#0",
+        "text#0 (copy)"
+      ],
+      "stack_out": [
+        "text#0",
+        "text#0 (copy)",
+        "0"
+      ]
+    },
+    "98": {
+      "error": "invalid array length header",
+      "op": "extract_uint16 // on error: invalid array length header",
+      "defined_out": [
+        "aggregate%array_length%0#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "aggregate%array_length%0#0"
+      ]
+    },
+    "99": {
+      "op": "pushint 2",
+      "defined_out": [
+        "2",
+        "aggregate%array_length%0#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "aggregate%array_length%0#0",
+        "2"
+      ]
+    },
+    "101": {
+      "op": "+",
+      "defined_out": [
+        "add%0#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "add%0#0"
+      ]
+    },
+    "102": {
+      "op": "dig 1",
+      "stack_out": [
+        "text#0",
+        "add%0#0",
+        "text#0 (copy)"
+      ]
+    },
+    "104": {
+      "op": "len",
+      "defined_out": [
+        "add%0#0",
+        "len%0#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "add%0#0",
+        "len%0#0"
+      ]
+    },
+    "105": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "eq%0#0"
+      ]
+    },
+    "106": {
+      "error": "invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "op": "assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "stack_out": [
+        "text#0"
+      ]
+    },
+    "107": {
+      "op": "intc_1 // 0",
+      "stack_out": [
+        "text#0",
+        "0"
+      ]
+    },
+    "108": {
+      "op": "bytec_0 // \"message_count\"",
+      "defined_out": [
+        "\"message_count\"",
+        "0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "0",
+        "\"message_count\""
+      ]
+    },
+    "109": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "count#0",
+        "maybe_exists%0#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "110": {
+      "error": "check self.message_count exists",
+      "op": "assert // check self.message_count exists",
+      "stack_out": [
+        "text#0",
+        "count#0"
+      ]
+    },
+    "111": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "1",
+        "count#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "1"
+      ]
+    },
+    "112": {
+      "op": "+",
+      "stack_out": [
+        "text#0",
+        "count#0"
+      ]
+    },
+    "113": {
+      "op": "bytec_0 // \"message_count\"",
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "\"message_count\""
+      ]
+    },
+    "114": {
+      "op": "dig 1",
+      "defined_out": [
+        "\"message_count\"",
+        "count#0",
+        "count#0 (copy)",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "\"message_count\"",
+        "count#0 (copy)"
+      ]
+    },
+    "116": {
+      "op": "app_global_put",
+      "stack_out": [
+        "text#0",
+        "count#0"
+      ]
+    },
+    "117": {
+      "op": "txn Sender",
+      "defined_out": [
+        "count#0",
+        "reinterpret_Encoded(uint8[32])%0#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "reinterpret_Encoded(uint8[32])%0#0"
+      ]
+    },
+    "119": {
+      "op": "global LatestTimestamp",
+      "defined_out": [
+        "count#0",
+        "reinterpret_Encoded(uint8[32])%0#0",
+        "text#0",
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "reinterpret_Encoded(uint8[32])%0#0",
+        "tmp%1#0"
+      ]
+    },
+    "121": {
+      "op": "itob",
+      "defined_out": [
+        "aggregate%val_as_bytes%0#0",
+        "count#0",
+        "reinterpret_Encoded(uint8[32])%0#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "reinterpret_Encoded(uint8[32])%0#0",
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "122": {
+      "op": "swap",
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "aggregate%val_as_bytes%0#0",
+        "reinterpret_Encoded(uint8[32])%0#0"
+      ]
+    },
+    "123": {
+      "op": "pushbytes 0x002a",
+      "defined_out": [
+        "0x002a",
+        "aggregate%val_as_bytes%0#0",
+        "count#0",
+        "reinterpret_Encoded(uint8[32])%0#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "aggregate%val_as_bytes%0#0",
+        "reinterpret_Encoded(uint8[32])%0#0",
+        "0x002a"
+      ]
+    },
+    "127": {
+      "op": "concat",
+      "defined_out": [
+        "aggregate%head%1#0",
+        "aggregate%val_as_bytes%0#0",
+        "count#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "aggregate%val_as_bytes%0#0",
+        "aggregate%head%1#0"
+      ]
+    },
+    "128": {
+      "op": "swap",
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "aggregate%head%1#0",
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "129": {
+      "op": "concat",
+      "defined_out": [
+        "aggregate%head%2#0",
+        "count#0",
+        "text#0"
+      ],
+      "stack_out": [
+        "text#0",
+        "count#0",
+        "aggregate%head%2#0"
+      ]
+    },
+    "130": {
+      "op": "uncover 2",
+      "stack_out": [
+        "count#0",
+        "aggregate%head%2#0",
+        "text#0"
+      ]
+    },
+    "132": {
+      "op": "concat",
+      "defined_out": [
+        "count#0",
+        "msg#0"
+      ],
+      "stack_out": [
+        "count#0",
+        "msg#0"
+      ]
+    },
+    "133": {
+      "op": "swap",
+      "stack_out": [
+        "msg#0",
+        "count#0"
+      ]
+    },
+    "134": {
+      "op": "itob",
+      "defined_out": [
+        "encoded_value%0#0",
+        "msg#0"
+      ],
+      "stack_out": [
+        "msg#0",
+        "encoded_value%0#0"
+      ]
+    },
+    "135": {
+      "op": "bytec_1 // \"msg_\"",
+      "defined_out": [
+        "\"msg_\"",
+        "encoded_value%0#0",
+        "msg#0"
+      ],
+      "stack_out": [
+        "msg#0",
+        "encoded_value%0#0",
+        "\"msg_\""
+      ]
+    },
+    "136": {
+      "op": "swap",
+      "stack_out": [
+        "msg#0",
+        "\"msg_\"",
+        "encoded_value%0#0"
+      ]
+    },
+    "137": {
+      "op": "concat",
+      "defined_out": [
+        "map_prefixed_key%0#0",
+        "msg#0"
+      ],
+      "stack_out": [
+        "msg#0",
+        "map_prefixed_key%0#0"
+      ]
+    },
+    "138": {
+      "op": "dup",
+      "defined_out": [
+        "map_prefixed_key%0#0",
+        "map_prefixed_key%0#0 (copy)",
+        "msg#0"
+      ],
+      "stack_out": [
+        "msg#0",
+        "map_prefixed_key%0#0",
+        "map_prefixed_key%0#0 (copy)"
+      ]
+    },
+    "139": {
+      "op": "box_del",
+      "defined_out": [
+        "map_prefixed_key%0#0",
+        "msg#0",
+        "{box_del}"
+      ],
+      "stack_out": [
+        "msg#0",
+        "map_prefixed_key%0#0",
+        "{box_del}"
+      ]
+    },
+    "140": {
+      "op": "pop",
+      "stack_out": [
+        "msg#0",
+        "map_prefixed_key%0#0"
+      ]
+    },
+    "141": {
+      "op": "swap",
+      "stack_out": [
+        "map_prefixed_key%0#0",
+        "msg#0"
+      ]
+    },
+    "142": {
+      "op": "box_put",
+      "stack_out": []
+    },
+    "143": {
+      "op": "intc_0 // 1",
+      "stack_out": [
+        "1"
+      ]
+    },
+    "144": {
+      "op": "return",
+      "stack_out": []
+    },
+    "145": {
+      "subroutine": "smart_contracts.guestbook_app_contract.contract.GuestbookAppContract.get_message_count[routing]",
+      "params": {},
+      "block": "get_message_count",
+      "stack_in": [],
+      "op": "intc_1 // 0",
+      "defined_out": [
+        "0"
+      ],
+      "stack_out": [
+        "0"
+      ]
+    },
+    "146": {
+      "op": "bytec_0 // \"message_count\"",
+      "defined_out": [
+        "\"message_count\"",
+        "0"
+      ],
+      "stack_out": [
+        "0",
+        "\"message_count\""
+      ]
+    },
+    "147": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%0#0",
+        "maybe_value%0#0"
+      ],
+      "stack_out": [
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "148": {
+      "error": "check self.message_count exists",
+      "op": "assert // check self.message_count exists",
+      "stack_out": [
+        "maybe_value%0#0"
+      ]
+    },
+    "149": {
+      "op": "itob",
+      "defined_out": [
+        "aggregate%val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "150": {
+      "op": "bytec_2 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "aggregate%val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "aggregate%val_as_bytes%0#0",
+        "0x151f7c75"
+      ]
+    },
+    "151": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "152": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "tmp%1#0"
+      ]
+    },
+    "153": {
+      "op": "log",
+      "stack_out": []
+    },
+    "154": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "155": {
+      "op": "return",
+      "stack_out": []
+    },
+    "156": {
+      "subroutine": "smart_contracts.guestbook_app_contract.contract.GuestbookAppContract.get_message[routing]",
+      "params": {},
+      "block": "get_message",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "index#0"
+      ],
+      "stack_out": [
+        "index#0"
+      ]
+    },
+    "159": {
+      "op": "dup",
+      "defined_out": [
+        "index#0",
+        "index#0 (copy)"
+      ],
+      "stack_out": [
+        "index#0",
+        "index#0 (copy)"
+      ]
+    },
+    "160": {
+      "op": "len",
+      "defined_out": [
+        "index#0",
+        "len%0#0"
+      ],
+      "stack_out": [
+        "index#0",
+        "len%0#0"
+      ]
+    },
+    "161": {
+      "op": "pushint 8",
+      "defined_out": [
+        "8",
+        "index#0",
+        "len%0#0"
+      ],
+      "stack_out": [
+        "index#0",
+        "len%0#0",
+        "8"
+      ]
+    },
+    "163": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "index#0"
+      ],
+      "stack_out": [
+        "index#0",
+        "eq%0#0"
+      ]
+    },
+    "164": {
+      "error": "invalid number of bytes for arc4.uint64",
+      "op": "assert // invalid number of bytes for arc4.uint64",
+      "stack_out": [
+        "index#0"
+      ]
+    },
+    "165": {
+      "op": "btoi",
+      "defined_out": [
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "materialized_values%0#0"
+      ]
+    },
+    "166": {
+      "op": "itob",
+      "defined_out": [
+        "encoded_value%0#0"
+      ],
+      "stack_out": [
+        "encoded_value%0#0"
+      ]
+    },
+    "167": {
+      "op": "bytec_1 // \"msg_\"",
+      "defined_out": [
+        "\"msg_\"",
+        "encoded_value%0#0"
+      ],
+      "stack_out": [
+        "encoded_value%0#0",
+        "\"msg_\""
+      ]
+    },
+    "168": {
+      "op": "swap",
+      "stack_out": [
+        "\"msg_\"",
+        "encoded_value%0#0"
+      ]
+    },
+    "169": {
+      "op": "concat",
+      "defined_out": [
+        "map_prefixed_key%0#0"
+      ],
+      "stack_out": [
+        "map_prefixed_key%0#0"
+      ]
+    },
+    "170": {
+      "op": "box_get",
+      "defined_out": [
+        "aggregate%box_get%0#0",
+        "aggregate%box_get%1#0"
+      ],
+      "stack_out": [
+        "aggregate%box_get%0#0",
+        "aggregate%box_get%1#0"
+      ]
+    },
+    "171": {
+      "error": "check self.messages entry exists",
+      "op": "assert // check self.messages entry exists",
+      "stack_out": [
+        "aggregate%box_get%0#0"
+      ]
+    },
+    "172": {
+      "op": "bytec_2 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "aggregate%box_get%0#0"
+      ],
+      "stack_out": [
+        "aggregate%box_get%0#0",
+        "0x151f7c75"
+      ]
+    },
+    "173": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "aggregate%box_get%0#0"
+      ]
+    },
+    "174": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "tmp%2#0"
+      ]
+    },
+    "175": {
+      "op": "log",
+      "stack_out": []
+    },
+    "176": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "177": {
+      "op": "return",
+      "stack_out": []
+    }
+  }
+}
